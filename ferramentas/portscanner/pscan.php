@@ -30,7 +30,8 @@
     $startPort = (int)readline("Digite a porta inicial do escaneamento: ");
     $endPort = (int)readline("Digite a porta final do escaneamento: ");
 
-    echo "Escaneando $host de $startPort a $endPort...\n"; // Mensagem de depuração
+    echo "Escaneando $host de $startPort a $endPort...\n";
+    
     $openPorts = scanPorts($host, $startPort, $endPort);
 
     if (count($openPorts) > 0)
