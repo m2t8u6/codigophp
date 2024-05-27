@@ -1,23 +1,31 @@
 <?php
-    function scanPorts($host, $startPort, $endPort, $timeout = 1) {
+    
+    function scanPorts($host, $startPort, $endPort, $timeout = 1)
+    {
         $openPorts = [];
         
-        for ($port = $startPort; $port <= $endPort; $port++) {
-            echo "Verificando a porta $port...\n"; // Mensagem de depuração
+        for ($port = $startPort; $port <= $endPort; $port++)
+        {
+            echo "Verificando a porta $port...\n";
+            
             $connection = @fsockopen($host, $port, $errno, $errstr, $timeout);
-            if (is_resource($connection)) {
+            
+            if (is_resource($connection))
+            {
                 $openPorts[] = $port;
-                echo "Porta $port está aberta.\n"; // Mensagem de depuração
+                echo "Porta $port está aberta.\n";
                 fclose($connection);
-            } else {
-                echo "Porta $port está fechada ou inacessível: $errstr ($errno)\n"; // Mensagem de depuração
+            }
+            else
+            {
+                echo "Porta $port está fechada ou inacessível: $errstr ($errno)\n";
             }
         }
 
         return $openPorts;
     }
 
-    // Solicitar ao usuário o host e a faixa de portas
+    
     $host = readline("Digite o site ou endereço IP a ser escaneado: ");
     $startPort = (int)readline("Digite a porta inicial do escaneamento: ");
     $endPort = (int)readline("Digite a porta final do escaneamento: ");
@@ -25,12 +33,17 @@
     echo "Escaneando $host de $startPort a $endPort...\n"; // Mensagem de depuração
     $openPorts = scanPorts($host, $startPort, $endPort);
 
-    if (count($openPorts) > 0) {
+    if (count($openPorts) > 0)
+    {
         echo "Portas abertas em $host:\n";
-        foreach ($openPorts as $port) {
+        
+        foreach ($openPorts as $port)
+        {
             echo "Porta $port está aberta.\n";
         }
-    } else {
+    }
+    else
+    {
         echo "Nenhuma porta aberta encontrada em $host no intervalo de portas $startPort-$endPort.\n";
     }
 ?>
