@@ -32,7 +32,6 @@
 
     <section>
         <?php
-            // Aprenda a calcular media aritimetica simples e ponderada.
             
             if ( (isset($_GET['1valor']) && isset($_GET['2valor']) && isset($_GET['1peso']) && isset($_GET['2peso'])) &&
                  (is_numeric($_GET['1valor']) && is_numeric($_GET['2valor']) && is_numeric($_GET['1peso']) && is_numeric($_GET['2peso'])) )
